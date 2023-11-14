@@ -2,7 +2,6 @@ package com.example.threadclone.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -11,6 +10,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavHostController
 import com.example.threadclone.R
 import com.example.threadclone.navigation.Routes
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.delay
 
 @Composable
@@ -31,7 +31,21 @@ fun Splash(navController: NavHostController) {
     }
     LaunchedEffect(true) {
         delay(1500)
-        navController.navigate(Routes.BottomNav.routes)
+        // checking user login or not using firebase
+        if(FirebaseAuth.getInstance().currentUser != null){
+            navController.navigate(Routes.BottomNav.routes){
+                popUpTo(navController.graph.startDestinationId)
+                launchSingleTop = true
+            }
+        }
+        else{
+            navController.navigate(Routes.Login.routes){
+                popUpTo(navController.graph.startDestinationId)
+                launchSingleTop = true
+            }
+        }
+
+
     }
 
 }

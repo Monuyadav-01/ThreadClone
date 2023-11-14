@@ -8,4 +8,7 @@ sealed class Routes(val routes: String) {
     data object Splash : Routes("spalsh")
     data object Profile : Routes("profile")
     data object BottomNav : Routes("bottom_nav")
+
+    data object Login : Routes("login")
+    data object Resister : Routes("resister")
 }

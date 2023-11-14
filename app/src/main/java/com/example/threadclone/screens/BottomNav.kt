@@ -1,5 +1,6 @@
 package com.example.threadclone.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
@@ -9,11 +10,11 @@ import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -28,12 +29,12 @@ fun BottomNav(navController: NavHostController) {
 
     val navController1 = rememberNavController()
 
-    Scaffold(bottomBar = { MyBottomBar(navController1) }) { innerPading ->
+    Scaffold(bottomBar = { MyBottomBar(navController1) }, modifier = Modifier.background(color = MaterialTheme.colorScheme.background)) { innerPadding ->
 
         NavHost(
             navController = navController1,
             startDestination = Routes.Home.routes,
-            modifier = Modifier.padding(innerPading)
+            modifier = Modifier.padding(innerPadding)
         ) {
             composable(route = Routes.Home.routes) {
                 Home()
